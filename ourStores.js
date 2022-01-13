@@ -1,7 +1,7 @@
 export default class OurStores {
 	constructor() {
 		//auto init
-		if ($('body').hasClass('it-rihappy-nossas-lojas')) {
+		if ($('body').hasClass('body_class')) {
             this.initMap();
             this.searchCep();
             this.geoLocationButtom();
@@ -162,14 +162,13 @@ export default class OurStores {
 
     modalLocations(locations) {
         let _this = this;
-        $('.it-rihappy-nossas-lojas .modalLocation').remove();
+        $('.body_class .modalLocation').remove();
         let modal = `
             <div class="modalLocation">
                 <div class="modalLocation__internal">
                 <span class="modalLocation__close"> </span>
                     <h3> Mais de um endereço encontrado </h3>
                     <p> Selecione o endereço correto: </p>
-
                     <ul class="modalLocation__listAddress">
                         
                     </ul>
@@ -177,7 +176,7 @@ export default class OurStores {
             </div>
         `
 
-        $('.it-rihappy-nossas-lojas').append(modal);
+        $('.body_class').append(modal);
 
         $.each(locations, function(i){
             $('.modalLocation__listAddress').prepend(
@@ -207,7 +206,6 @@ export default class OurStores {
             <div class="itResultsStores">
                 <h3 class="itResultsStores__title"> Foram encontradas <span class="totalStores"> </span> </h3>
                 <ul class="itResultsStores__stores">
-
                 </ul>
             </div>
         `
@@ -265,7 +263,7 @@ export default class OurStores {
                 var settings = {
                     "async": true,
                     "crossDomain": true,
-                    "url": `/api/dataentities/TL/search?_fields=loja,telefone&_where=(loja=${storeNameFormat})&an=rihappy`,
+                    "url": `/api/dataentities/TL/search?_fields=loja,telefone&_where=(loja=${storeNameFormat})&an=storeName`,
                     "method": "GET",
                     "headers": {
                         "Content-Type": "application/json",
@@ -331,7 +329,6 @@ export default class OurStores {
                 _this.consultPoints(`${longitude};${latitude}`);
             });
         })
-
 
     }
     
